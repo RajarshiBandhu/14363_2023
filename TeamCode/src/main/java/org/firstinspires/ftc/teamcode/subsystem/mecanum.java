@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystem;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,7 +10,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp
-public class mecanum extends LinearOpMode {
+public class mecanum extends OpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
@@ -73,5 +74,15 @@ public class mecanum extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
         }
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void loop() {
+
     }
 }
