@@ -43,7 +43,6 @@ public class Wheels{
 
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
         double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
-
         double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
 
         double frontLeftPower = 1 * (multi * (rotY + rotX + rx)) / denominator;
