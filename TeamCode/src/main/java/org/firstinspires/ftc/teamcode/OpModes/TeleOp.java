@@ -7,12 +7,12 @@ import org.firstinspires.ftc.teamcode.subsystem.Wheels;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends OpMode
 {
-    private Gamepad Driver, Operator;
+    private Gamepad Driver = new Gamepad(), Operator;
     Wheels wheels;
     @Override
     public void init()
+
     {
-        Driver = new Gamepad();
 
     }
     @Override
