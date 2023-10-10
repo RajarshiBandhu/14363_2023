@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.subsystem;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
+import com.arcrobotics.ftclib.command.Subsystem;
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -17,17 +19,17 @@ public class Wheels
 {
     BNO055IMU imu;
     BNO055IMU.Parameters parameters;
-    DcMotor frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor;
+    DcMotorEx frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor;
 
     public Wheels(HardwareMap hardwareMap)
     {
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+        DcMotor frontLeftMotor = hardwareMap.get(DcMotorEx.class,"frontLeftMotor");
+        DcMotor backLeftMotor = hardwareMap.get(DcMotorEx.class,"backLeftMotor");
+        DcMotor frontRightMotor = hardwareMap.get(DcMotorEx.class,"frontRightMotor");
+        DcMotorEx backRightMotor = hardwareMap.get(DcMotorEx.class,"backRightMotor");
 
-        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
         // Retrieve the IMU from the hardware map
         imu = hardwareMap.get(BNO055IMU.class, "cIMU");
@@ -43,10 +45,10 @@ public class Wheels
         imu.initialize(parameters);
     }
 
-    public void fieldCentric(Gamepad gamepad1){
-        double y = gamepad1.left_stick_y;
-        double x = -gamepad1.left_stick_x;
-        double rx = -gamepad1.right_stick_x;
+    public void fieldCentric(GamepadEx gamepad1){
+        double y = gamepad1.getLeftY();
+        double x = -gamepad1.getLeftX();
+        double rx = -gamepad1.getRightX();
         double botHeading = -imu.getAngularOrientation().firstAngle;
 
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
