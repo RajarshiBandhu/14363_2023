@@ -11,21 +11,21 @@ import org.firstinspires.ftc.teamcode.subsystem.Wheels;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends OpMode
 {
-    private GamepadEx Driver;
+    private GamepadEx driver;
 
     private Wheels driveTrain;
     Wheels wheels;
     @Override
     public void init()
     {
-        Driver = new GamepadEx(gamepad1);
+        driver = new GamepadEx(gamepad1);
         driveTrain = new Wheels(hardwareMap);
     }
     @Override
     public void loop() {
-        Driver.readButtons();
+        driver.readButtons();
+        driveTrain.fieldCentric(driver);
 
-        driveTrain.fieldCentric(Driver);
         if(gamepad1.dpad_up) {
             wheels.resetIMU();
         }
